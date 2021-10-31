@@ -10,7 +10,7 @@ public static class Program
 
         WriteLine(exPresident switch
         {
-            // FEATURE:
+            // FEATURE: Extended property patterns
             { Face.Color: "Orange" } => "It's Trump!",
             // OLD: { Face: { Color: "Orange" } } => "It's Trump!",
             _ => "Most likely not Trump"

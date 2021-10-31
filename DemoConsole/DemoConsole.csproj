@@ -6,7 +6,7 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
-        <StartupObject>DemoConsole.A_MethodBuilder.Program</StartupObject>
+        <StartupObject>DemoConsole._1_Namespaces_and_usings.Program</StartupObject>
     </PropertyGroup>
     
     <!-- Implicit imports -->
