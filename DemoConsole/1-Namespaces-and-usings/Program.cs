@@ -1,19 +1,20 @@
 ﻿// FEATURE: File scoped namespaces
-namespace DemoConsole._1_Namespaces_and_usings;
+namespace Trit.DemoConsole._1_Namespaces_and_usings;
 
-public static class Program
+public static class Demo
 {
-    public static void Main()
+    public static Task Main()
     {
-        WriteLine();
-
-        var piString = QuickMaths.PI.ToString(CultureInfo.InvariantCulture);
+        var piString = QuickMaths.PI.ToString(InvariantCulture);
 
         var piBytes = Encoding.ASCII.GetBytes(piString);
 
-        var piByteString = string.Join(" ", piBytes.Select(p => p.ToString("x")));
+        var piByteString = string.Join(" ",
+            piBytes.Select(p => p.ToString("x")));
 
         WriteLine(piByteString);
         WriteLine(QuickMaths.PI);
+
+        return Task.CompletedTask;
     }
 }

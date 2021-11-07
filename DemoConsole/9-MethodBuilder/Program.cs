@@ -1,13 +1,11 @@
-﻿namespace DemoConsole.A_MethodBuilder;
+﻿namespace Trit.DemoConsole._9_MethodBuilder;
 
-public static class Program
+public static class Demo
 {
     public static async Task Main()
     {
-        WriteLine();
-
         int delays = await CountDelays();
-        WriteLine($"Delays: {delays}");
+        WriteLine($"Counted {delays} Task.Delay calls");
     }
 
     // FEATURE: Allow [AsyncMethodBuilder(...)] on methods
@@ -15,7 +13,8 @@ public static class Program
     public static async Task<int> CountDelays()
     {
         await Task.Delay(10);
-        await new HttpClient().GetAsync("https://www.teamrockstars.nl/");
+        await new HttpClient()
+            .GetAsync("https://www.teamrockstars.nl/");
         await Task.Delay(10);
         await Task.Delay(10);
         return 0;

@@ -1,18 +1,18 @@
-﻿namespace DemoConsole._5_Structs;
+﻿namespace Trit.DemoConsole._5_Structs;
 
-public static class Program
+public static class Demo
 {
-    public static void Main()
+    public static Task Main()
     {
-        WriteLine();
-
         WriteLine(new Point());
 
         // FEATURE: "with" support for all structs
-        WriteLine(new Point() { X = 42 });
+        WriteLine(new Point { X = 42 });
 
         // FEATURE: "with" support for anonymous types
         WriteLine(new { a = 1, b = 3.0f } with { a = 3 });
+
+        return Task.CompletedTask;
     }
 }
 
@@ -32,5 +32,6 @@ public struct Point
 
     public int Y { get; set; } = 2;
 
-    public override string ToString() => $"X = {X}, Y = {Y}, Z = {_z}";
+    public override string ToString() =>
+        $"X = {X}, Y = {Y}, Z = {_z}";
 }

@@ -1,32 +1,44 @@
-﻿using System.Text.RegularExpressions;
+﻿namespace Trit.DemoConsole.B_Parallel;
 
-namespace DemoConsole.B_Parallel;
-
-public static class Program
+public static class Demo
 {
     public static async Task Main()
     {
-        WriteLine();
-
-        var httpClient = new HttpClient();
-        string eventsHomepageContent = await (await httpClient.GetAsync("https://www.teamupit.nl/events/")).Content.ReadAsStringAsync();
-        (string value, int index)[] linksToGet = Regex.Matches(eventsHomepageContent, "\"(https://www.teamupit.nl/event/[^/\"]+?/)\"")
-            .Select((match, index) => (match.Groups[1].Value, index))
-            .ToArray();
-
-        string[] organisers = new string[linksToGet.Length];
+        using var httpClient = new HttpClient();
+        (string value, int index)[] linksToGet =
+            await GetEventLinksFromTeamUpIt(httpClient);
+        var organisers = new string[linksToGet.Length];
 
         // FEATURE: Async version of Parallel.ForEach()
-        await Parallel.ForEachAsync(linksToGet, async (eventLink, cancellationToken) =>
-        {
-            string eventPageContent = await (await httpClient.GetAsync(eventLink.value, cancellationToken))
-                .Content
-                .ReadAsStringAsync(cancellationToken);
+        await Parallel.ForEachAsync(
+            linksToGet,
+            async (eventLink, cancellationToken) =>
+            {
+                HttpResponseMessage linkResponse = await httpClient
+                    .GetAsync(eventLink.value, cancellationToken);
 
-            organisers[eventLink.index] = GetOrganiser(eventPageContent);
-        });
+                string eventPageContent = await linkResponse
+                    .Content
+                    .ReadAsStringAsync(cancellationToken);
 
-        WriteLine(string.Join(", ", organisers.Distinct().OrderBy(n => n)));
+                organisers[eventLink.index] =
+                    GetOrganiser(eventPageContent);
+            });
+
+        WriteLine(
+            "Organisers with an active event on TeamUp IT: " +
+            string.Join(", ",
+                organisers.Distinct().OrderBy(n => n)));
+    }
+
+    #region Boilerplate
+
+    private static async Task<(string value, int index)[]> GetEventLinksFromTeamUpIt(HttpClient httpClient)
+    {
+        string eventsHomepageContent = await (await httpClient.GetAsync("https://www.teamupit.nl/events/")).Content.ReadAsStringAsync();
+        return Regex.Matches(eventsHomepageContent, "\"(https://www.teamupit.nl/event/[^/\"]+?/)\"")
+            .Select((match, index) => (match.Groups[1].Value, index))
+            .ToArray();
     }
 
     private static string GetOrganiser(string eventPageContent)
@@ -41,4 +53,6 @@ public static class Program
 
         return new string(chiefBlock.Slice(nameStartIndex, spanEndIndex - nameStartIndex));
     }
+
+    #endregion
 }

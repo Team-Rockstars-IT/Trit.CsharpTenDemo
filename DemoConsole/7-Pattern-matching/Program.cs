@@ -1,12 +1,12 @@
-﻿namespace DemoConsole._8_Pattern_matching;
+﻿namespace Trit.DemoConsole._7_Pattern_matching;
 
-public static class Program
+public static class Demo
 {
-    public static void Main()
+    public static Task Main()
     {
-        WriteLine();
-
-        var exPresident = new Person("Donald", "Trump", new Face(Color: "Orange"));
+        var exPresident = new Person(
+            "Donald", "Trump",
+            new Face(Color: "Orange"));
 
         WriteLine(exPresident switch
         {
@@ -15,6 +15,8 @@ public static class Program
             // OLD: { Face: { Color: "Orange" } } => "It's Trump!",
             _ => "Most likely not Trump"
         });
+
+        return Task.CompletedTask;
     }
 }
 

@@ -6,9 +6,17 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
-        <StartupObject>DemoConsole._1_Namespaces_and_usings.Program</StartupObject>
+        <RootNamespace>Trit.DemoConsole</RootNamespace>
     </PropertyGroup>
-    
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <NoWarn>1701;1702;7022</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <NoWarn>1701;1702;7022</NoWarn>
+    </PropertyGroup>
+
     <!-- Implicit imports -->
     <ItemGroup> <!-- Condition="'$(ImplicitUsings)' == 'true' Or '$(ImplicitUsings)' == 'enable'" -->
         <Using Include="System" />

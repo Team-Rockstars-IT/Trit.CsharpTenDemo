@@ -1,11 +1,9 @@
-﻿namespace DemoConsole._3_Lambdas;
+﻿namespace Trit.DemoConsole._3_Lambdas;
 
-public static class Program
+public static class Demo
 {
-    public static void Main()
+    public static Task Main()
     {
-        WriteLine();
-
         // FEATURE: Lambda assigned to var
         var getHashCode = 1.GetHashCode;
         var getOne = () => 1;
@@ -13,12 +11,19 @@ public static class Program
         // FEATURE: Explicit lambda return type
         var addOne = void (ref int x) => x++;
 
-        int counter = 0; addOne(ref counter);
+        int counter = 0;
+        WriteLine($"Counter is {counter}" +
+                  " before calling void lambda with ref parameter");
 
-        WriteLine(counter + 1);
+        addOne(ref counter);
+
+        WriteLine($"Counter is {counter}" +
+                  " after calling void lambda with ref parameter");
 
         // FEATURE: Attributes on lambda
         var onEntireLambda = [Obsolete] (int a, int b) => a + b;
         var onParameter = ([Required] int a, int? b) => a + b;
+
+        return Task.CompletedTask;
     }
 }
