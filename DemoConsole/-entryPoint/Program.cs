@@ -7,6 +7,7 @@ while (true)
     var picked = ReadKey().KeyChar;
     Clear();
 
+    // All sources available @ https://github.com/Team-Rockstars-IT/Trit.CsharpTenDemo
     await (picked switch
     {
         '1' => DemoConsole._1_Namespaces_and_usings.Demo.Main(),
