@@ -2,6 +2,13 @@
 
 public static class Demo
 {
+    public record Person(
+        string FirstName,
+        string? MiddleName,
+        string LastName,
+        int Age,
+        bool? HasDriversLicense);
+
     public static Task Main()
     {
         WriteLine("FirstName: " +
@@ -27,11 +34,4 @@ public static class Demo
             .Create(typeof(Person).GetProperty(propertyName)!)
             .ReadState;
     }
-
-    public record Person(
-        string FirstName,
-        string? MiddleName,
-        string LastName,
-        int Age,
-        bool? HasDriversLicense);
 }

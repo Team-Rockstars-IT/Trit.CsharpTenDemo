@@ -7,7 +7,7 @@ public static class Demo
         WriteLine(new Point());
 
         // FEATURE: "with" support for all structs
-        WriteLine(new Point { X = 42 });
+        WriteLine(new Point { X = 3 } with { X = 42 });
 
         // FEATURE: "with" support for anonymous types
         WriteLine(new { a = 1, b = 3.0f } with { a = 3 });
