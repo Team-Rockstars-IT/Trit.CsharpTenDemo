@@ -13,12 +13,12 @@ public static class Demo
 
         int counter = 0;
         WriteLine($"Counter is {counter}" +
-                  " before calling void lambda with ref parameter");
+                  "\nbefore calling void lambda\nwith ref parameter");
 
         addOne(ref counter);
 
-        WriteLine($"Counter is {counter}" +
-                  " after calling void lambda with ref parameter");
+        WriteLine($"\nCounter is {counter}" +
+                  "\nafter calling void lambda\nwith ref parameter");
 
         // FEATURE: Attributes on lambda
         var onEntireLambda = [Obsolete] (int a, int b) => a + b;

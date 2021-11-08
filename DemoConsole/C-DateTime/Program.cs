@@ -9,14 +9,17 @@ public static class Demo
         var timeOnly = new TimeOnly(14, 42, 6, 66);
 
         WriteLine($"Date: {dateOnly}, " +
-                  $"{dateOnly:O}, " +
-                  $"{dateOnly:R}, " +
-                  $"{dateOnly:dd}-{dateOnly:MM}-{dateOnly:yy}" +
+                  $"\n\t{dateOnly:O}, " +
+                  $"\n\t{dateOnly:R}, " +
+                  $"\n\t{dateOnly:dd}-{dateOnly:MM}-{dateOnly:yy}" +
                   $"\nTime: {timeOnly}, " +
-                  $"{timeOnly:R}, " +
-                  $"{timeOnly:O}, " +
-                  $"{timeOnly:HH}:{timeOnly:mm}:" +
-                  $"{timeOnly:ffff}");
+                  $"\n\t{timeOnly:R}, " +
+                  $"\n\t{timeOnly:O}, " +
+                  $"\n\t{timeOnly:HH}:{timeOnly:mm}:{timeOnly:ffff}");
+
+
+
+
 
 
 

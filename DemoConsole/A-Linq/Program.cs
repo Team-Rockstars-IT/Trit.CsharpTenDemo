@@ -4,6 +4,7 @@ public static class Demo
 {
     public static Task Main()
     {
+        #region Chunk
         List<int> integers = new() { 1, 2, (int)QuickMaths.PI, 4 };
         var chunked = integers
             // FEATURE: Addition of Chunk to Linq method set
@@ -12,7 +13,9 @@ public static class Demo
 
         WriteLine($"First chunk: {string.Join(",", chunked[0])}");
         WriteLine($"Second chunk: {string.Join(",", chunked[1])}");
+        #endregion
 
+        #region TryGetNonEnumeratedCount
         // FEATURE: TryGetNonEnumeratedCount which only returns
         //          count if an enumerator isn't needed to do so
         integers.TryGetNonEnumeratedCount(out int integerCount);
@@ -31,7 +34,9 @@ public static class Demo
                 .Where(i => i % 2 == 0)
                 .TryGetNonEnumeratedCount(out int _));
         ReadKey();
+        #endregion
 
+        #region People
         var people = new List<Person>
         {
             new("Albert", "Einstein", Age: 76),
@@ -53,6 +58,7 @@ public static class Demo
                   people.UnionBy(new[] { stallone }, p => p.Age).Count());
         WriteLine("Intersect with age 76: " +
                   people.IntersectBy(new[] { 76 }, p => p.Age).Count());
+        #endregion
 
         return Task.CompletedTask;
     }
