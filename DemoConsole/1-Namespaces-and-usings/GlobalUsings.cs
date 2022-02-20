@@ -1,4 +1,5 @@
 ﻿// FEATURE: Global usings
+global using Microsoft.Extensions.Logging;
 global using System.ComponentModel.DataAnnotations;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
