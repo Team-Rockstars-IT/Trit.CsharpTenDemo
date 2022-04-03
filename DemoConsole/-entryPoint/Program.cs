@@ -7,7 +7,8 @@ while (true)
     var picked = ReadKey().KeyChar;
     Clear();
 
-    // All sources available @ https://github.com/Team-Rockstars-IT/Trit.CsharpTenDemo
+    // All sources available
+    // @ https://github.com/Team-Rockstars-IT/Trit.CsharpTenDemo
     await (picked switch
     {
         '1' => DemoConsole._1_Namespaces_and_usings.Demo.Main(),
@@ -17,7 +18,7 @@ while (true)
         '5' => DemoConsole._5_Structs.Demo.Main(),
         '6' => DemoConsole._6_CallerArgumentExpression.Demo.Main(),
         '7' => DemoConsole._7_Pattern_matching.Demo.Main(),
-        '8' => DemoConsole._8_Generic_attributes.Demo.Main(),
+        '8' => DemoConsole._8_Static_abstract_members.Demo.Main(),
         '9' => DemoConsole._9_MethodBuilder.Demo.Main(),
         'A' => DemoConsole.A_Linq.Demo.Main(),
         'B' => DemoConsole.B_Parallel.Demo.Main(),
@@ -33,5 +34,5 @@ while (true)
         return 0;
     }
 
-    Console.ReadKey();
+    ReadKey();
 }
